@@ -1,1 +1,1 @@
-React Boilerplate 2
+React timer app
