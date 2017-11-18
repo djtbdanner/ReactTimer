@@ -4,12 +4,36 @@ var CountdownForm = require('CountdownForm') ;
 
 var Countdown = React.createClass({
 
+  //name specific - called by ReactDOM
+  componentDidUpdate: function (prevProps, prevState){
+    if (this.state.countdownStatus !== prevState.countdownStatus){
+      switch (this.state.countdownStatus) {
+        case "started":
+          this.startTimer();
+          break;
+        default:
+
+      }
+    }
+  },
+
+  startTimer: function(){
+    this.timer = setInterval(
+      () => {
+       var newCount = this.state.count - 1;
+       this.setState({count:newCount>=0?newCount:0})
+      },
+    1000);
+  },
+
   getInitialState: function (){
-    return {count: 0};
+    return {count: 0,
+            countdownStatus: "stopped"
+          };
   },
 
   handleSetCountdown: function (seconds){
-    this.setState({count: seconds});
+    this.setState({count: seconds, countdownStatus: "started"});
   },
 
   render: function() {
