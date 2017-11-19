@@ -22,11 +22,27 @@ var Countdown = React.createClass({
     }
   },
 
+  // fired from react as move away from components
+  componentWillUnmount: function(){
+    console.log('Component did unmount');
+    clearInterval(this.timer);
+    this.timer = undefined;
+  },
+  // componentWillMount: function(){
+  //   console.log('component is gonna mount!!!');
+  // },
+  // componentDidMount: function(){
+  //   console.log('component just mounted!!!');
+  // },
+
   startTimer: function(){
     this.timer = setInterval(
       () => {
        var newCount = this.state.count - 1;
-       this.setState({count:newCount>=0?newCount:0})
+       this.setState({count:newCount>=0?newCount:0});
+       if (newCount === 0){
+         this.setState({countdownStatus:"stopped"});
+       }
       },
     1000);
   },
