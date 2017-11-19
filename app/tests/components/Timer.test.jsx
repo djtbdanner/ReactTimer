@@ -18,7 +18,7 @@ describe('Timer', () => {
 
       var timer = TestUtils.renderIntoDocument(<Timer/>);
       timer.handleStatusChange("started");
-      expect(timer.state.countdownStatus).toBe("started");
+      expect(timer.state.timerStatus).toBe("started");
       expect(timer.state.count).toBe(0);
 
       setTimeout(() => {

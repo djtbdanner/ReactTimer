@@ -6,10 +6,10 @@ var CountdownForm = require('CountdownForm') ;
 var Timer = React.createClass({
 
   getInitialState : function() {
-    return {count: 0, countdownStatus: "paused"};
+    return {count: 0, timerStatus: "paused"};
   },
   handleStatusChange: function(newStatus){
-    this.setState({countdownStatus:newStatus});
+    this.setState({timerStatus:newStatus});
   },
 
   componentWillUnmount: function(){
@@ -19,8 +19,8 @@ var Timer = React.createClass({
 
   //name specific - called by ReactDOM
   componentDidUpdate: function (prevProps, prevState){
-    if (this.state.countdownStatus !== prevState.countdownStatus){
-      switch (this.state.countdownStatus) {
+    if (this.state.timerStatus !== prevState.timerStatus){
+      switch (this.state.timerStatus) {
         case "started":
           this.startTimer();
           break;
@@ -44,13 +44,13 @@ var Timer = React.createClass({
   },
 
   render: function() {
-    var {count, countdownStatus} = this.state;
+    var {count, timerStatus} = this.state;
 
     return(
       <div>
         <h1 className="page-title">Timer App</h1>
         <Clock totalSeconds={count}/>
-        <Controls countdownStatus={countdownStatus} onStatusChange={this.handleStatusChange}/>
+        <Controls countdownStatus={timerStatus} onStatusChange={this.handleStatusChange}/>
       </div>
     );
   }
