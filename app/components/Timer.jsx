@@ -1,13 +1,13 @@
 var React = require('react');
 var Clock = require('Clock');
 var Controls = require('Controls');
-var CountdownForm = require('CountdownForm') ;
 
 var Timer = React.createClass({
 
   getInitialState : function() {
-    return {count: 0, timerStatus: "paused"};
+    return {count: 0, timerStatus: "stopped"};
   },
+  
   handleStatusChange: function(newStatus){
     this.setState({timerStatus:newStatus});
   },
